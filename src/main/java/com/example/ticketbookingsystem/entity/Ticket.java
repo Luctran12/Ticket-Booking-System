@@ -1,5 +1,6 @@
 package com.example.ticketbookingsystem.entity;
 
+import com.example.ticketbookingsystem.InsufficientStockException;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -27,12 +28,12 @@ public class Ticket {
     private String ticketType;
 
     @Column(nullable = false)
-    private BigDecimal price; // Luôn dùng BigDecimal cho tiền tệ thay vì Double
+    private BigDecimal price;
 
     @Column(nullable = false)
     private Integer stock;
 
-    // CHIÊU THỨC "ĐÓNG BĂNG" TRANH CHẤP DỮ LIỆU
+    // lock
     @Version
     private Long version;
 
@@ -40,10 +41,10 @@ public class Ticket {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
-    // Hàm nghiệp vụ: Giảm tồn kho an toàn
+    // business method
     public void decreaseStock(int quantity) {
         if (this.stock < quantity) {
-            throw new RuntimeException("Số lượng vé không đủ!");
+            throw new InsufficientStockException("Not enough stock for ticket:" + this.id);
         }
         this.stock -= quantity;
     }
