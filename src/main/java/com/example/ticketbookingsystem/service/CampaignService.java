@@ -1,17 +1,19 @@
 package com.example.ticketbookingsystem.service;
 
+import com.example.ticketbookingsystem.controller.request.CampaignRequest;
+import com.example.ticketbookingsystem.controller.response.CampaignResponse;
 import com.example.ticketbookingsystem.entity.Campaign;
 
 import java.util.List;
 
 public interface CampaignService {
-    Campaign createCampaign(Campaign campaign);
+    CampaignResponse createCampaign(CampaignRequest campaign);
 
-    List<Campaign> getOngoingCampaigns();
+    List<CampaignResponse> getOngoingCampaigns();
 
-    Campaign getCampaignById(Long id);
+    CampaignResponse getCampaignById(Long id);
 
-    List<Campaign> getCampaignByName(Long id);
+    List<CampaignResponse> getCampaignByName(String name);
 
     void preheatCache(Long campaignId);
 }
