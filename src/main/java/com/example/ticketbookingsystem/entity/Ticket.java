@@ -3,6 +3,7 @@ package com.example.ticketbookingsystem.entity;
 import com.example.ticketbookingsystem.InsufficientStockException;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Check;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import java.math.BigDecimal;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
         indexes = {
                 @Index(name = "idx_ticket_campaign", columnList = "campaign_id")
         })
+@Check(constraints = "stock >= 0")
 @Getter
 @Setter
 @NoArgsConstructor
