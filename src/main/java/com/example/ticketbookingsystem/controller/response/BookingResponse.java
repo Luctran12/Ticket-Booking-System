@@ -4,14 +4,10 @@ import com.example.ticketbookingsystem.common.OrderStatus;
 import lombok.Builder;
 import lombok.Data;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
 @Data
 @Builder
-public class OrderResponse {
+public class BookingResponse {
     private String orderId;
-    private OrderStatus status;
-    private BigDecimal totalPrice;
-    private LocalDateTime createdAt;
+    private OrderStatus orderStatus;
+    private String message;
 }
