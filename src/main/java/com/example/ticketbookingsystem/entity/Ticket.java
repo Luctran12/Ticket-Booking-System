@@ -1,6 +1,6 @@
 package com.example.ticketbookingsystem.entity;
 
-import com.example.ticketbookingsystem.InsufficientStockException;
+import com.example.ticketbookingsystem.exception.InsufficientStockException;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Check;

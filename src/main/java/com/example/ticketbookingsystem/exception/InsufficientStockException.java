@@ -1,4 +1,4 @@
-package com.example.ticketbookingsystem;
+package com.example.ticketbookingsystem.exception;
 
 public class InsufficientStockException extends RuntimeException {
     public InsufficientStockException(String message) {
