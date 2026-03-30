@@ -19,7 +19,7 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id; // Sử dụng String lưu UUID
+    private UUID id; // Sử dụng String lưu UUID
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -34,6 +34,9 @@ public class Order {
 
     @Column(name = "total_price", nullable = false)
     private BigDecimal totalPrice;
+
+    @Column(name = "price_at_purchase", nullable = false)
+    private BigDecimal priceAtPurchase;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
