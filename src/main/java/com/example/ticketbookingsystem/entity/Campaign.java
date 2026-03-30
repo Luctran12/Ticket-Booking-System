@@ -22,6 +22,10 @@ public class Campaign {
     @Column(nullable = false)
     private String name;
 
+    // backup
+//    @OneToMany(mappedBy = "campaign", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<Ticket> tickets = new ArrayList<>();
+
     @Column(name = "start_time", nullable = false)
     private LocalDateTime startTime;
 
