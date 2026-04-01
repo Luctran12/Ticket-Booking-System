@@ -7,7 +7,6 @@ import com.example.ticketbookingsystem.controller.response.UserResponse;
 import com.example.ticketbookingsystem.entity.User;
 
 public interface UserService {
-    User register(RegisterRequest request);
 
     void updateUser(UserUpdateRequest req);
 

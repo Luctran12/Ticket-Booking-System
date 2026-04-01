@@ -1,9 +1,14 @@
 package com.example.ticketbookingsystem.service;
 
 import com.example.ticketbookingsystem.controller.request.RegisterRequest;
+import com.example.ticketbookingsystem.controller.request.SignInRequest;
+import com.example.ticketbookingsystem.controller.response.TokenResponse;
+import com.example.ticketbookingsystem.controller.response.UserResponse;
 import com.example.ticketbookingsystem.entity.User;
 
 public interface AuthService {
+
+    UserResponse register(RegisterRequest request);
 
     TokenResponse getAccessToken(SignInRequest request);
 

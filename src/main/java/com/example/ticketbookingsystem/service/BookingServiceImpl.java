@@ -71,7 +71,15 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public OrderResponse getOrderStatus(String orderId) {
-        Order order = orderRepository.findById(UUID.fromString(orderId))
+        // check orderID format
+        UUID uuid;
+        try {
+            uuid = UUID.fromString(orderId);
+        } catch (IllegalArgumentException e) {
+            throw new ResourceNotFoundException("Invalid order ID format: " + orderId);
+        }
+
+        Order order = orderRepository.findById(uuid)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Order not found: " + orderId
                 ));
