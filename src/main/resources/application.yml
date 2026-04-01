@@ -1,0 +1,4 @@
+jwt:
+  secret: your-256-bit-base64-encoded-secret-key-here
+  expiration: 86400000  # 24 hours
+

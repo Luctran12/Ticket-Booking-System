@@ -167,15 +167,15 @@ orders (
 
 ## Tech Stack
 
-| Category | Technology | Purpose |
-|----------|-----------|---------|
-| Language | Java 21 | Application runtime |
-| Framework | Spring Boot 3 | Web, Security, Data JPA |
-| Database | PostgreSQL | Persistent storage, ACID transactions |
-| Cache | Redis | Atomic stock management, session store |
-| Message Broker | RabbitMQ | Async order queue |
-| API Gateway | Nginx | Rate limiting, load balancing |
-| Containerization | Docker | Local development & deployment |
+| Category | Technology                  | Purpose |
+|----------|-----------------------------|---------|
+| Language | Java 17                     | Application runtime |
+| Framework | Spring Boot 3               | Web, Security, Data JPA |
+| Database | PostgreSQL                  | Persistent storage, ACID transactions |
+| Cache | Redis                       | Atomic stock management, session store |
+| Message Broker | RabbitMQ                    | Async order queue |
+| API Gateway | Nginx                       | Rate limiting, load balancing |
+| Containerization | Docker                      | Local development & deployment |
 | Cloud | Microsoft Azure (Ubuntu VM) | Production hosting |
 
 ---
