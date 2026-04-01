@@ -6,9 +6,10 @@ import com.example.ticketbookingsystem.controller.response.CampaignResponse;
 import com.example.ticketbookingsystem.entity.Campaign;
 import com.example.ticketbookingsystem.exception.ResourceNotFoundException;
 import com.example.ticketbookingsystem.repository.CampaignRepository;
-import jakarta.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class CampaignServiceImpl implements CampaignService {
                 .build();
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<CampaignResponse> getOngoingCampaigns() {
         List<Campaign> campaigns = campaignRepository.findByStatus(CampaignStatus.ONGOING);
@@ -49,6 +51,7 @@ public class CampaignServiceImpl implements CampaignService {
                         .build()).toList();
     }
 
+    @Transactional(readOnly = true)
     @Override
     public CampaignResponse getCampaignById(Long id) {
         return campaignRepository.findById(id)
