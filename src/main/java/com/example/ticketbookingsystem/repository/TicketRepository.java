@@ -16,5 +16,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
     @Lock(LockModeType.OPTIMISTIC)
     Optional<Ticket> findById(Long id);
 
-    
+
+    List<Ticket> findByCampaignId(Long campaignId);
 }

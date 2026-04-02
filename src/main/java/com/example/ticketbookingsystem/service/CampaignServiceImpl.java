@@ -4,10 +4,13 @@ import com.example.ticketbookingsystem.common.CampaignStatus;
 import com.example.ticketbookingsystem.controller.request.CampaignRequest;
 import com.example.ticketbookingsystem.controller.response.CampaignResponse;
 import com.example.ticketbookingsystem.entity.Campaign;
+import com.example.ticketbookingsystem.entity.Ticket;
 import com.example.ticketbookingsystem.exception.ResourceNotFoundException;
 import com.example.ticketbookingsystem.repository.CampaignRepository;
 
+import com.example.ticketbookingsystem.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,9 +19,12 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j(topic = "CampaignService")
 public class CampaignServiceImpl implements CampaignService {
 
     private final CampaignRepository campaignRepository;
+    private final TicketRepository ticketRepository;
+    private final RedisService redisService;
 
     @Override
     public CampaignResponse createCampaign(CampaignRequest campaign) {
@@ -79,12 +85,30 @@ public class CampaignServiceImpl implements CampaignService {
 
     //TODO
     //implement Redis first
+    @Transactional
     @Override
     public void preheatCache(Long campaignId) {
-        Campaign campaign = campaignRepository.findById(campaignId).orElseThrow(() -> new ResourceNotFoundException("Campaign not found: " + campaignId));
+        Campaign campaign = campaignRepository.findById(campaignId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Campaign not found: " + campaignId));
         // TODO: load tickets → push to Redis
+        // Load tất cả tickets → đẩy lên Redis
+        List<Ticket> tickets = ticketRepository.findByCampaignId(campaignId);
+
+        if (tickets.isEmpty()) {
+            throw new ResourceNotFoundException(
+                    "No tickets found for campaign: " + campaignId);
+        }
+
+        tickets.forEach(ticket ->
+                redisService.initStock(ticket.getId(), ticket.getStock())
+        );
+
         campaign.setStatus(CampaignStatus.ONGOING);
         campaignRepository.save(campaign);
+
+        log.info("Preheated {} ticket types for campaign {}",
+                tickets.size(), campaignId);
 
     }
 }
