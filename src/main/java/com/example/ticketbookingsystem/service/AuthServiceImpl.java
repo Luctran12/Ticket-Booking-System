@@ -25,15 +25,15 @@ public class AuthServiceImpl implements AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    @Override
-    public TokenResponse getAccessToken(SignInRequest request) {
-        return null;
-    }
-
-    @Override
-    public TokenResponse getRefreshToken(String request) {
-        return null;
-    }
+//    @Override
+//    public TokenResponse getAccessToken(SignInRequest request) {
+//        return null;
+//    }
+//
+//    @Override
+//    public TokenResponse getRefreshToken(String request) {
+//        return null;
+//    }
 
     @Override
     public AuthResponse login(LoginRequest request) {
@@ -59,7 +59,7 @@ public class AuthServiceImpl implements AuthService {
                 .build();
     }
 
-
+    @Override
     public UserResponse register(RegisterRequest request) {
         // check email
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {

@@ -12,9 +12,9 @@ public interface AuthService {
 
     UserResponse register(RegisterRequest request);
 
-    TokenResponse getAccessToken(SignInRequest request);
-
-    TokenResponse getRefreshToken(String request);
+//    TokenResponse getAccessToken(SignInRequest request);
+//
+//    TokenResponse getRefreshToken(String request);
 
     AuthResponse login(LoginRequest request);
 
