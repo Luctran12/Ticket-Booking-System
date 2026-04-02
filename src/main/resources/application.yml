@@ -2,3 +2,10 @@ jwt:
   secret: tVy6/eiGjuZOlovDWkObVHEB60shGWjNBNCf9XdGNADDAc0LLswJuSuXv/BNzNEa2yiSZfXMKIJw6gNwed70/U29sjp/sDvuJy2E41erdHT+SSqoVCH5iA8tEooBcRqXvRQ1EJGLF/640KkuXUb3R7eIuV7XOj+zvOIJldugT7OFwc15nkUY0Oy2F04tKDfQi9UU8AgFOAd9dsOLHfFRS0cdq6pkF+QriPEmKKqmWjvCP7o4wt7Tt247ZaJ0gJgpxuGN3OjGc61N53eKznwHrwh9DH8oD1G5BaqHeBTdq6uqhei0v3LVfJpTFS3Tt5DOiBkDI5cnrHgbDMwGgDev
   expiration: 86400000  # 24 hours
 
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method   # sort theo GET/POST/PUT/DELETE
+    tags-sorter: alpha
+  api-docs:
+    path: /v3/api-docs

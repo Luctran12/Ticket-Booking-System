@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
-    List<Ticket> findByCampaignID(Long id);
+    //List<Ticket> findByCampaignID(Long id);
 
     @Lock(LockModeType.OPTIMISTIC)
     Optional<Ticket> findById(Long id);
