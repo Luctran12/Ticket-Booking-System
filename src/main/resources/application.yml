@@ -16,7 +16,29 @@ spring:
       host: localhost
       port: 6379
       timeout: 2000ms
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        retry:
+          enabled: true
+          max-attempts: 3
+          initial-interval: 1000ms
+          multiplier: 2.0        # 1s → 2s → 4s
+          max-interval: 10000ms  # maximum 10s between retries
+        acknowledge-mode: auto
 
+rabbitmq:
+  exchange: booking.exchange
+  queue:
+    booking: booking.queue
+    dead-letter: booking.dead-letter.queue
+  routing-key:
+    booking: booking.key
+    dead-letter: booking.dead-letter.key
 # Key conventions
 redis:
   key:
@@ -24,3 +46,5 @@ redis:
     order-status: "order_status:"    # order_status:{orderId}
   ttl:
     order-status: 3600  # 1 hour (seconds)
+
+
